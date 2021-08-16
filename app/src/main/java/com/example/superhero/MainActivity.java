@@ -4,6 +4,7 @@ import android.app.LoaderManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.Loader;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
@@ -51,6 +52,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner);
             Loading.setVisibility(View.GONE);
             TextView internet = (TextView) findViewById(R.id.noInternet);
+            internet.setTextSize(24);
+            internet.setTextColor(Color.parseColor("#00FFFF"));
             internet.setText("No internet connection");
         }
     }
@@ -64,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<SuperHero>> loader, List<SuperHero> superHeroes) {
 
-        mEmptyStateTextView.setText("No super hero data");
+        mEmptyStateTextView.setText("No internet connection");
 
         ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner);
         if(Loading != null) {

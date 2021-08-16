@@ -6,15 +6,6 @@
     android:layout_height="match_parent"
     android:background="@android:color/black">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/itemPublisher"
         android:layout_width="wrap_content"
@@ -246,8 +237,21 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
-        app:srcCompat="@drawable/sample" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <ProgressBar
+        android:id="@+id/loading_spinner_selectedImageView"
+        style="@style/Widget.AppCompat.ProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="#FFFFFF"
+        android:clickable="false"
+        android:padding="2dp"
+        app:layout_constraintBottom_toBottomOf="@+id/selectedImageView"
+        app:layout_constraintEnd_toEndOf="@+id/selectedImageView"
+        app:layout_constraintStart_toStartOf="@+id/selectedImageView"
+        app:layout_constraintTop_toTopOf="@+id/selectedImageView" />
 
     <TextView
         android:id="@+id/nameTextView"
@@ -266,7 +270,6 @@
         android:id="@+id/groupAffiliationTextView"
         android:layout_width="357dp"
         android:layout_height="0dp"
-        app:layout_constraintVertical_weight="1"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="32dp"
@@ -274,10 +277,13 @@
         android:layout_marginRight="8dp"
         android:text="GroupAffiliation"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
+        android:textSize="14sp"
+        app:autoSizeMaxTextSize="16sp"
+        app:autoSizeMinTextSize="8sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectedImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/selectedImageView"
+        app:layout_constraintVertical_weight="1" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -339,5 +345,17 @@
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="itemSpeed,strengthTextView,powerTextVIew,intelligenceTextView,durabilityTextView,itemPower,itemIntelligence,speedTextView,selectedImageView,itemDurability,nameTextView,itemStrength" />
+
+    <androidx.constraintlayout.widget.Group
+        android:id="@+id/group2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="birthPlaceTextView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

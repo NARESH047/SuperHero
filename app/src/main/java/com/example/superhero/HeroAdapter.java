@@ -26,7 +26,6 @@ public class HeroAdapter extends ArrayAdapter<SuperHero> {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
-//        ImageView HeroImage = (ImageView) listItemView.findViewById(R.id.hero_image);
 
         SuperHero currentSuperHero = getItem(position);
 
@@ -56,7 +55,6 @@ public class HeroAdapter extends ArrayAdapter<SuperHero> {
         if(currentSuperHero.getGender() != null){
             gender.setText(currentSuperHero.getGender());
         }
-//        HeroImage.setImageBitmap(currentSuperHero.getImage());
 
         return listItemView;
     }

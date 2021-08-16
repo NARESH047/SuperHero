@@ -1,7 +1,5 @@
 package com.example.superhero;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -21,8 +19,6 @@ import java.util.ArrayList;
 public final class QueryUtilis {
 
     public static final String HERO_REQUEST_URL =  "https://akabab.github.io/superhero-api/api/all.json";
-
-
 
     public static ArrayList<SuperHero> extractHeros(String jsonUrl) {
         Log.v("QueryUtilis", "Test: extractHeros");
@@ -70,14 +66,14 @@ public final class QueryUtilis {
 
                 JSONObject images = currentHeroData.getJSONObject("images");
                 URL imageUrl = createUrl(images.getString("md"));
-                Bitmap bmp = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
+//                Bitmap bmp = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
 
-                SuperHero superHero = new SuperHero(power, name, race, fullName, gender, bmp, intelligence, speed, durability, combat, birthPlace, publisher, groupAffiliation+".", height, weight);
+                SuperHero superHero = new SuperHero(power, name, race, fullName, gender, imageUrl, intelligence, speed, durability, combat, birthPlace, publisher, groupAffiliation+".", height, weight);
 
                 superHeroes.add(superHero);
             }
 
-        } catch (JSONException | IOException e) {
+        } catch (JSONException e) {
 
             Log.e("QueryUtils", "Problem parsing the JSON results", e);
         }
@@ -107,8 +103,8 @@ public final class QueryUtilis {
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
             urlConnection.setRequestMethod("GET");
-            urlConnection.setReadTimeout(10000 /* milliseconds */);
-            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.setReadTimeout(10000 );
+            urlConnection.setConnectTimeout(15000 );
             urlConnection.connect();
             int code = urlConnection.getResponseCode();
             if(code==200) {
@@ -122,7 +118,6 @@ public final class QueryUtilis {
                 urlConnection.disconnect();
             }
             if (inputStream != null) {
-                // function must handle java.io.IOException here
                 inputStream.close();
             }
         }

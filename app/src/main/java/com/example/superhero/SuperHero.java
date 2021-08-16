@@ -1,6 +1,6 @@
 package com.example.superhero;
 
-import android.graphics.Bitmap;
+import java.net.URL;
 
 
 public class SuperHero {
@@ -19,15 +19,15 @@ public class SuperHero {
 
     private String mGender= "null";
 
-    private Bitmap mImage;
+    private URL mImageUrl;
 
-    public SuperHero(int power, String name, String race, String fullName, String gender, Bitmap image, int intelligence, int speed, int durability, int combat, String birthPlace, String publisher, String groupAffiliation, String height, String weight) {
+    public SuperHero(int power, String name, String race, String fullName, String gender, URL imageUrl, int intelligence, int speed, int durability, int combat, String birthPlace, String publisher, String groupAffiliation, String height, String weight) {
         mPower = power;
         mName = name;
         mRace = race;
         mFullName = fullName;
         mGender = gender;
-        mImage = image;
+        mImageUrl = imageUrl;
         mIntelligence = intelligence;
         mSpeed = speed;
         mDurability = durability;
@@ -71,8 +71,8 @@ public class SuperHero {
         return mGender;
     }
 
-    public Bitmap getImage() {
-        return mImage;
+    public URL getImageUrl() {
+        return mImageUrl;
     }
 
     public int getStrength() {

@@ -1,10 +1,18 @@
 package com.example.superhero;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.IOException;
+import java.net.URL;
 
 public class SelectedItem extends AppCompatActivity {
 
@@ -15,6 +23,8 @@ public class SelectedItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clicked_item);
         superHero = MainActivity.getCurrentSuperHero();
+        HeroAsyncTask task = new HeroAsyncTask();
+        task.execute();
         if(superHero != null) {
             TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
             nameTextView.setText(superHero.getName());
@@ -67,9 +77,40 @@ public class SelectedItem extends AppCompatActivity {
             TextView heightAndWeightTextView = findViewById(R.id.heightAndWeightTextView);
             String heightAndWeight = String.valueOf(superHero.getHeightAndWeight());
             heightAndWeightTextView.setText(heightAndWeight);
-            ImageView HeroImage = (ImageView) findViewById(R.id.selectedImageView);
-            HeroImage.setImageBitmap(superHero.getImage());
+
         }
     }
 
+
+    private class HeroAsyncTask extends AsyncTask<URL, Void, Bitmap> {
+
+        @Override
+        protected Bitmap doInBackground(URL... urls) {
+            // Create URL object
+            URL imageUrl = (superHero.getImageUrl());
+
+            try {
+                Bitmap bmp = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
+                return bmp;
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Bitmap currentHeroImage) {
+            if (currentHeroImage == null) {
+                return;
+            }
+            ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner_selectedImageView);
+            if(Loading != null) {
+                Loading.setVisibility(View.GONE);
+            }
+            ImageView HeroImage = (ImageView) findViewById(R.id.selectedImageView);
+            HeroImage.setImageBitmap(currentHeroImage);
+        }
+}
 }
