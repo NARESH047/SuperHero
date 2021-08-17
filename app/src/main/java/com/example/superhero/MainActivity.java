@@ -70,6 +70,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<List<Dog>> loader, List<Dog> dogs) {
 
         mEmptyStateTextView.setText("No internet connection");
+        View layoutBottom = findViewById(R.id.layoutBottom);
+        layoutBottom.setVisibility(View.VISIBLE);
 
         ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner);
         if(Loading != null) {

@@ -1,7 +1,10 @@
 package com.example.superhero;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -22,8 +25,6 @@ public class SelectedItem extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clicked_item);
         dog = MainActivity.getCurrentDog();
-        DogAsyncTask task = new DogAsyncTask();
-        task.execute();
         if(dog != null) {
             TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
             nameTextView.setText(dog.getName());
@@ -63,9 +64,29 @@ public class SelectedItem extends AppCompatActivity {
             bredForTextView.setTextColor(getResources().getColor(getidColor(dog.getId())));
         }
         ImageView selectedImageView = (ImageView) findViewById(R.id.selectedImageView);
-
         selectedImageView.setBackgroundColor(getResources().getColor(getidColor(dog.getId())));
+        ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner_selectedImageView);
+
+        Loading.setBackgroundColor(getResources().getColor(getidColor(dog.getId())));
+
+        ConnectivityManager cm =
+                (ConnectivityManager)this.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+        boolean isConnected = activeNetwork != null &&
+                activeNetwork.isConnectedOrConnecting();
+        if(isConnected) {
+            DogAsyncTask task = new DogAsyncTask();
+            task.execute();
+        }
+        else{
+            Loading.setVisibility(View.GONE);
+            Loading.setBackgroundColor(getResources().getColor(getidColor(dog.getId())));
+            TextView internet = (TextView) findViewById(R.id.noInternet_selectedImageView);
+            internet.setText("No internet connection");
+        }
     }
+
 
 
     private class DogAsyncTask extends AsyncTask<URL, Void, Bitmap> {

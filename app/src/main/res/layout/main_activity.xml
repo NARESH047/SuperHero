@@ -41,14 +41,46 @@
         </androidx.appcompat.widget.Toolbar>
 
     </LinearLayout>
+
     <ListView
         android:id="@+id/list"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:divider="@null"
         android:dividerHeight="0dp"
         />
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|bottom"
+        android:id="@+id/layoutBottom"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="4dp"
+            android:text="Made with "
+            android:textColor="#006994"
+            android:textSize="16dp" />
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/pixelated_heart" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text=" from Naresh :)"
+            android:textColor="#006994"
+            android:textSize="16dp" />
+
+    </LinearLayout>
+
     </LinearLayout>
 
 
@@ -57,8 +89,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:textColor="@android:color/holo_green_light"
-        android:textSize="16dp"
+        android:textColor="#00FFFF"
+        android:textSize="24sp"
         android:text=""/>
     <ProgressBar
         android:id="@+id/loading_spinner"
