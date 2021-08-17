@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@android:color/holo_orange_light"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/weightTextView"
         app:layout_constraintTop_toTopOf="@+id/itemHeight" />
 
@@ -21,6 +22,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@android:color/holo_orange_light"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/originTextView"
         app:layout_constraintTop_toTopOf="@+id/itemWeight" />
 
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@android:color/holo_orange_light"
+        android:textSize="16sp"
         app:layout_constraintBottom_toBottomOf="@+id/itemLifespan"
         app:layout_constraintStart_toStartOf="@+id/bredGroupTextView" />
 
@@ -39,6 +42,7 @@
         android:layout_height="wrap_content"
         android:text="TextView"
         android:textColor="@android:color/holo_orange_light"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/lifespanTextView"
         app:layout_constraintTop_toTopOf="@+id/itemOrigin" />
 
@@ -46,8 +50,6 @@
         android:id="@+id/itemHeight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
         android:layout_marginTop="32dp"
         android:text="Height"
         android:textColor="@android:color/holo_green_light"
@@ -94,7 +96,8 @@
         android:text="TextView"
         android:textColor="@android:color/holo_orange_light"
         app:layout_constraintStart_toEndOf="@+id/itemBredGroup"
-        app:layout_constraintTop_toTopOf="@+id/itemBredGroup" />
+        app:layout_constraintTop_toTopOf="@+id/itemBredGroup"
+        android:textSize="16sp" />
 
     <TextView
         android:id="@+id/itemBredGroup"

@@ -62,17 +62,17 @@
         android:ellipsize="end"
         android:maxLines="1"
         android:textColor="#2B3D4D"
-        android:textSize="24sp"
+        android:textSize="20sp"
         tools:text="" />
     <TextView
-        android:id="@+id/breed_group"
+        android:id="@+id/bred_for"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:fontFamily="sans-serif-medium"
         android:maxLines="1"
         android:textAllCaps="true"
-        android:textColor="@color/textColorHeroDetails"
+        android:textColor="@color/textColorDogDetails"
         android:textSize="12sp"
         tools:text="" />
 
@@ -87,11 +87,11 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/bred_for"
+            android:id="@+id/breed_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textColor="@color/textColorHeroDetails"
+            android:textColor="@color/textColorDogDetails"
             android:textSize="12sp"
             tools:text="" />
 
@@ -100,7 +100,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:textColor="@color/textColorHeroDetails"
+            android:textColor="@color/textColorDogDetails"
             android:textSize="12sp"
             tools:text="" />
 

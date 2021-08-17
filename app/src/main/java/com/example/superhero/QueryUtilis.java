@@ -43,7 +43,7 @@ public final class QueryUtilis {
                 String name = currentDogData.optString("name");
                 String breed_group;
                 breed_group = currentDogData.optString("breed_group");
-                String bred_for = currentDogData.optString("name");
+                String bred_for = currentDogData.optString("bred_for");
                 String origin = currentDogData.optString("origin");
                 String countryCode = currentDogData.optString("country_code");
                 String temperament = currentDogData.optString("temperament");
@@ -53,7 +53,7 @@ public final class QueryUtilis {
                 String weight = weightObject.optString("metric");
 
                 JSONObject heightObject = currentDogData.getJSONObject("height");
-                String height = weightObject.optString("metric");
+                String height = heightObject.optString("metric");
 
                 JSONObject imageObject = currentDogData.getJSONObject("image");
                 String imageId = imageObject.optString("id");

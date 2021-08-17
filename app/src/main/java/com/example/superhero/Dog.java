@@ -76,7 +76,7 @@ public class Dog {
         if (mOrigin == null || mOrigin == "") {
             if(mCountryCode!=null && mCountryCode!=""){
                 mOrigin = mCountryCode;
-            } else mOrigin = "Unknown";
+            } else mOrigin = " - ";
         }
         return mOrigin;
     }
@@ -86,9 +86,9 @@ public class Dog {
     }
 
     public String getHeight() {
-        return mHeight;
+        return mHeight + " cm";
     }
     public  String getWeight(){
-        return mWeight;
+        return mWeight + " kg";
     }
 }

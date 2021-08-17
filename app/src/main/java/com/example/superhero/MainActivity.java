@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     DogAdapter adapter;
     private TextView mEmptyStateTextView;
     private ListView heroListView;
+    Parcelable state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,6 +86,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
         heroListView.setAdapter(adapter);
+        if(state!=null){
+            heroListView.onRestoreInstanceState(state);
+        }
 
 
         heroListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -108,6 +113,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
+    @Override
+    protected void onPause() {
+        state = heroListView.onSaveInstanceState();
+        super.onPause();
+    }
 }
 
 

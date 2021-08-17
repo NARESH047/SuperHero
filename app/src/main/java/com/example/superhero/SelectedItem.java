@@ -60,6 +60,7 @@ public class SelectedItem extends AppCompatActivity {
             }
             TextView bredForTextView = findViewById(R.id.bredForTextView);
             bredForTextView.setText(String.valueOf(dog.getBred_for())+".");
+            bredForTextView.setTextColor(getResources().getColor(getidColor(dog.getId())));
         }
         ImageView selectedImageView = (ImageView) findViewById(R.id.selectedImageView);
 
@@ -76,7 +77,7 @@ public class SelectedItem extends AppCompatActivity {
 
             try {
                 Bitmap bmp = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
-                return bmp;
+                return Bitmap.createScaledBitmap(bmp,301, 233, true);
 
             } catch (IOException e) {
                 e.printStackTrace();
