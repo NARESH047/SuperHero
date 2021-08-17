@@ -16,78 +16,63 @@ import java.net.URL;
 
 public class SelectedItem extends AppCompatActivity {
 
-    SuperHero superHero;
-
+    Dog dog;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clicked_item);
-        superHero = MainActivity.getCurrentSuperHero();
-        HeroAsyncTask task = new HeroAsyncTask();
+        dog = MainActivity.getCurrentDog();
+        DogAsyncTask task = new DogAsyncTask();
         task.execute();
-        if(superHero != null) {
+        if(dog != null) {
             TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
-            nameTextView.setText(superHero.getName());
+            nameTextView.setText(dog.getName());
 
-            TextView fullNameTV = findViewById(R.id.fullNameTextView);
-            String fullName = superHero.getFullName();
-            if(fullName !=null) {
-                fullNameTV.setText(fullName);
+            TextView bredGroupTextView = findViewById(R.id.bredGroupTextView);
+            String bredGroup = dog.getBreedGroup();
+            if(bredGroup !=null) {
+                bredGroupTextView.setText(bredGroup);
             }
-            TextView genderTV = findViewById(R.id.genderTextView);
-            String gender = superHero.getGender();
-            if(gender !=null) {
-                genderTV.setText(gender);
+            TextView originTextView = findViewById(R.id.originTextView);
+            String origin = dog.getOrigin();
+            if(origin !=null) {
+                originTextView.setText(origin);
             }
-            TextView raceTv = findViewById(R.id.raceTextView);
-            String race = superHero.getRace();
-            if(race!=null) {
-                raceTv.setText(race);
+            TextView heightTextView = findViewById(R.id.heightTextView);
+            String height = dog.getHeight();
+            if(height!=null) {
+                heightTextView.setText(height);
             }
-            TextView birthPlaceTv = findViewById(R.id.birthPlaceTextView);
-            String birthPlace = superHero.getBirthPlace();
-            if(birthPlace!=null) {
-                birthPlaceTv.setText(birthPlace);
+            TextView weightTextView = findViewById(R.id.weightTextView);
+            String weight = dog.getWeight();
+            if(weight!=null) {
+                weightTextView.setText(weight);
             }
-            TextView publisherTV = findViewById(R.id.publisherTextView);
-            String publisher = superHero.getPublisher();
-            if(publisher!=null) {
-                publisherTV.setText(publisher);
+            TextView lifespanTextView = findViewById(R.id.lifespanTextView);
+            String lifespan = dog.getLife_span();
+            if(lifespan!=null) {
+                lifespanTextView.setText(lifespan);
             }
-            TextView groupAffiliationTV = findViewById(R.id.groupAffiliationTextView);
-            String groupAffiliation = superHero.getGroupAffiliation();
-            if(groupAffiliation!=null) {
-                groupAffiliationTV.setText(groupAffiliation);
+            TextView temperamantTextView = findViewById(R.id.temperamantTextView);
+            String temperament = dog.getTemperament();
+            if(temperament!=null) {
+                temperamantTextView.setText(temperament+".");
             }
-            TextView intelligenceTV = findViewById(R.id.intelligenceTextView);
-            int intelligence = superHero.getIntelligence();
-            intelligenceTV.setText(String.valueOf(intelligence));
-            TextView speedTV = findViewById(R.id.speedTextView);
-            int speed = superHero.getSpeed();
-            speedTV.setText(String.valueOf(speed));
-            TextView strengthTV = findViewById(R.id.strengthTextView);
-            int strength = superHero.getStrength();
-            strengthTV.setText(String.valueOf(strength));
-            TextView durabilityTV = findViewById(R.id.durabilityTextView);
-            int durability = superHero.getDurability();
-            durabilityTV.setText(String.valueOf(durability));
-            TextView powerTV = findViewById(R.id.powerTextVIew);
-            String power = String.valueOf(superHero.getPower());
-            powerTV.setText(power);
-            TextView heightAndWeightTextView = findViewById(R.id.heightAndWeightTextView);
-            String heightAndWeight = String.valueOf(superHero.getHeightAndWeight());
-            heightAndWeightTextView.setText(heightAndWeight);
-
+            TextView bredForTextView = findViewById(R.id.bredForTextView);
+            bredForTextView.setText(String.valueOf(dog.getBred_for())+".");
         }
+        ImageView selectedImageView = (ImageView) findViewById(R.id.selectedImageView);
+
+        selectedImageView.setBackgroundColor(getResources().getColor(getidColor(dog.getId())));
     }
 
 
-    private class HeroAsyncTask extends AsyncTask<URL, Void, Bitmap> {
+    private class DogAsyncTask extends AsyncTask<URL, Void, Bitmap> {
 
         @Override
         protected Bitmap doInBackground(URL... urls) {
             // Create URL object
-            URL imageUrl = (superHero.getImageUrl());
+            URL imageUrl = (dog.getImageUrl());
 
             try {
                 Bitmap bmp = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
@@ -101,16 +86,42 @@ public class SelectedItem extends AppCompatActivity {
 
 
         @Override
-        protected void onPostExecute(Bitmap currentHeroImage) {
-            if (currentHeroImage == null) {
+        protected void onPostExecute(Bitmap currentDogImage) {
+            if (currentDogImage == null) {
                 return;
             }
             ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner_selectedImageView);
             if(Loading != null) {
                 Loading.setVisibility(View.GONE);
             }
-            ImageView HeroImage = (ImageView) findViewById(R.id.selectedImageView);
-            HeroImage.setImageBitmap(currentHeroImage);
+            ImageView DogImage = (ImageView) findViewById(R.id.selectedImageView);
+            DogImage.setImageBitmap(currentDogImage);
         }
+
 }
+
+    private int getidColor(int id) {
+        int idColorResourceId = 0;
+        int idFloor = id;
+        if(idFloor == 0 || idFloor%6 ==0 ) {
+            idColorResourceId = R.color.id1;
+        }
+        else if(idFloor%5 ==0) {
+            idColorResourceId = R.color.id2;
+        }
+        else if(idFloor%4 ==0) {
+            idColorResourceId = R.color.id3;
+        }
+        else if(idFloor%3 ==0) {
+            idColorResourceId = R.color.id4;
+        }
+        else if(idFloor%2 ==0) {
+            idColorResourceId = R.color.id5;
+        }
+        else {
+            idColorResourceId = R.color.id6;
+        }
+
+        return idColorResourceId;
+    }
 }

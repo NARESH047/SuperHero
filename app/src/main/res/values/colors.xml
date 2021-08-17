@@ -10,23 +10,16 @@
 
     <color name="textColorHeroDetails">#B4BAC0</color>
 
-    <color name="power1">#4A7BA7</color>
+    <color name="id1">#4A7BA7</color>
 
-    <color name="power2">#04B4B3</color>
+    <color name="id2">#04B4B3</color>
 
-    <color name="power3">#10CAC9</color>
+    <color name="id3">#10CAC9</color>
 
-    <color name="power4">#F5A623</color>
+    <color name="id4">#F5A623</color>
 
-    <color name="power5">#FF7D50</color>
+    <color name="id5">#FF7D50</color>
 
-    <color name="power6">#FC6644</color>
+    <color name="id6">#FC6644</color>
 
-    <color name="power7">#E75F40</color>
-
-    <color name="power8">#E13A20</color>
-
-    <color name="power9">#D93218</color>
-
-    <color name="power10plus">#C03823</color>
 </resources>

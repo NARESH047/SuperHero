@@ -20,9 +20,9 @@ import java.util.List;
 
 import static com.example.superhero.QueryUtilis.HERO_REQUEST_URL;
 
-public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<SuperHero>> {
-    private static SuperHero currentSuperHero;
-    HeroAdapter adapter;
+public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<Dog>> {
+    private static Dog currentDog;
+    DogAdapter adapter;
     private TextView mEmptyStateTextView;
     private ListView heroListView;
 
@@ -59,13 +59,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     }
 
     @Override
-    public Loader<List<SuperHero>> onCreateLoader(int id, Bundle args) {
+    public Loader<List<Dog>> onCreateLoader(int id, Bundle args) {
 
-        return new HeroLoader(this, HERO_REQUEST_URL);
+        return new DogLoader(this, HERO_REQUEST_URL);
     }
 
     @Override
-    public void onLoadFinished(Loader<List<SuperHero>> loader, List<SuperHero> superHeroes) {
+    public void onLoadFinished(Loader<List<Dog>> loader, List<Dog> dogs) {
 
         mEmptyStateTextView.setText("No internet connection");
 
@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
 
-        adapter = new HeroAdapter(MainActivity.this, superHeroes);
+        adapter = new DogAdapter(MainActivity.this, dogs);
 
 
         heroListView.setAdapter(adapter);
@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
 
-                currentSuperHero = adapter.getItem(position);
+                currentDog = adapter.getItem(position);
                 Intent itemIntent = new Intent(MainActivity.this, SelectedItem.class);
                 startActivity(itemIntent);
 
@@ -98,12 +98,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         });
     }
 
-    public static SuperHero getCurrentSuperHero(){
-        return  currentSuperHero;
+    public static Dog getCurrentDog(){
+        return currentDog;
     }
 
     @Override
-    public void onLoaderReset(Loader<List<SuperHero>> loader) {
+    public void onLoaderReset(Loader<List<Dog>> loader) {
         adapter.clear();
 
     }

@@ -33,11 +33,11 @@
     >
 
     <TextView
-    android:id="@+id/power"
+    android:id="@+id/id"
     android:layout_width="36dp"
     android:layout_height="36dp"
     android:layout_gravity="center_vertical"
-    android:background="@drawable/power_circle"
+    android:background="@drawable/id_circle"
     android:fontFamily="sans-serif-medium"
     android:gravity="center"
     android:textColor="@android:color/white"
@@ -65,7 +65,7 @@
         android:textSize="24sp"
         tools:text="" />
     <TextView
-        android:id="@+id/family"
+        android:id="@+id/breed_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:ellipsize="end"
@@ -87,7 +87,7 @@
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/full_name"
+            android:id="@+id/bred_for"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -96,7 +96,7 @@
             tools:text="" />
 
         <TextView
-            android:id="@+id/gender"
+            android:id="@+id/origin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

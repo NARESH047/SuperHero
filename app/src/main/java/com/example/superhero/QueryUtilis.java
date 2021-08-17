@@ -18,11 +18,9 @@ import java.util.ArrayList;
 
 public final class QueryUtilis {
 
-    public static final String HERO_REQUEST_URL =  "https://akabab.github.io/superhero-api/api/all.json";
+    public static final String HERO_REQUEST_URL =  "https://api.thedogapi.com/v1/breeds";
 
-    public static ArrayList<SuperHero> extractHeros(String jsonUrl) {
-        Log.v("QueryUtilis", "Test: extractHeros");
-
+    public static ArrayList<Dog> extractDogs(String jsonUrl) {
 
         String jsonResponse = null;
         try {
@@ -31,54 +29,46 @@ public final class QueryUtilis {
             e.printStackTrace();
         }
 
-
-        ArrayList<SuperHero> superHeroes = new ArrayList<>();
+        ArrayList<Dog> dogs = new ArrayList<>();
 
         try {
 
             JSONArray baseJsonResponse = new JSONArray(jsonResponse);
 
-
             for (int i = 0; i < baseJsonResponse.length(); i++) {
 
-                JSONObject currentHeroData = baseJsonResponse.getJSONObject(i);
+                JSONObject currentDogData = baseJsonResponse.getJSONObject(i);
 
-                String name = currentHeroData.getString("name");
-                JSONObject powerStats = currentHeroData.getJSONObject("powerstats");
-                int power = powerStats.getInt("power");
-                int intelligence = powerStats.getInt("intelligence");
-                int speed = powerStats.getInt("speed");
-                int durability = powerStats.getInt("power");
-                int combat = powerStats.getInt("combat");
-                JSONObject biography = currentHeroData.getJSONObject("biography");
-                String fullName = biography.getString("fullName");
-                String birthPlace = biography.getString("placeOfBirth");
-                String publisher = biography.getString("publisher");
-                JSONObject appearance = currentHeroData.getJSONObject("appearance");
-                String gender = appearance.getString("gender");
-                String race = appearance.getString("race");
-                JSONArray heightArray = appearance.getJSONArray("height");
-                String height = heightArray.getString(1);
-                JSONArray weightArray = appearance.getJSONArray("weight");
-                String weight =  weightArray.getString(1);
-                JSONObject connections = currentHeroData.getJSONObject("connections");
-                String groupAffiliation = connections.getString("groupAffiliation");
+                int id = currentDogData.getInt("id");
+                String name = currentDogData.optString("name");
+                String breed_group;
+                breed_group = currentDogData.optString("breed_group");
+                String bred_for = currentDogData.optString("name");
+                String origin = currentDogData.optString("origin");
+                String countryCode = currentDogData.optString("country_code");
+                String temperament = currentDogData.optString("temperament");
+                String life_span = currentDogData.optString("life_span");
 
-                JSONObject images = currentHeroData.getJSONObject("images");
-                URL imageUrl = createUrl(images.getString("md"));
-//                Bitmap bmp = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
+                JSONObject weightObject = currentDogData.getJSONObject("weight");
+                String weight = weightObject.optString("metric");
 
-                SuperHero superHero = new SuperHero(power, name, race, fullName, gender, imageUrl, intelligence, speed, durability, combat, birthPlace, publisher, groupAffiliation+".", height, weight);
+                JSONObject heightObject = currentDogData.getJSONObject("height");
+                String height = weightObject.optString("metric");
 
-                superHeroes.add(superHero);
+                JSONObject imageObject = currentDogData.getJSONObject("image");
+                String imageId = imageObject.optString("id");
+                URL imageUrl = createUrl(imageObject.optString("url"));
+
+                Dog dog = new Dog(id, name, breed_group, bred_for, origin, temperament, life_span, weight, height, imageId, imageUrl, countryCode);
+
+                dogs.add(dog);
             }
 
         } catch (JSONException e) {
-
             Log.e("QueryUtils", "Problem parsing the JSON results", e);
         }
 
-        return superHeroes;
+        return dogs;
     }
 
     static URL createUrl(String stringUrl) {
@@ -86,7 +76,6 @@ public final class QueryUtilis {
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException exception) {
-            Log.e("LOG_TAG", "Error with creating URL", exception);
             return null;
         }
         return url;
@@ -102,6 +91,7 @@ public final class QueryUtilis {
         InputStream inputStream = null;
         try {
             urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestProperty("x-api-key", "cfad93c5-b405-4113-bfd7-e28283b336e5");
             urlConnection.setRequestMethod("GET");
             urlConnection.setReadTimeout(10000 );
             urlConnection.setConnectTimeout(15000 );

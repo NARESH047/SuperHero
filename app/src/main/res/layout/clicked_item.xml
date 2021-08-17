@@ -5,237 +5,118 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@android:color/black">
+    
+    <TextView
+        android:id="@+id/heightTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@android:color/holo_orange_light"
+        app:layout_constraintStart_toStartOf="@+id/weightTextView"
+        app:layout_constraintTop_toTopOf="@+id/itemHeight" />
 
     <TextView
-        android:id="@+id/itemPublisher"
+        android:id="@+id/weightTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@android:color/holo_orange_light"
+        app:layout_constraintStart_toStartOf="@+id/originTextView"
+        app:layout_constraintTop_toTopOf="@+id/itemWeight" />
+
+    <TextView
+        android:id="@+id/lifespanTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@android:color/holo_orange_light"
+        app:layout_constraintBottom_toBottomOf="@+id/itemLifespan"
+        app:layout_constraintStart_toStartOf="@+id/bredGroupTextView" />
+
+    <TextView
+        android:id="@+id/originTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textColor="@android:color/holo_orange_light"
+        app:layout_constraintStart_toStartOf="@+id/lifespanTextView"
+        app:layout_constraintTop_toTopOf="@+id/itemOrigin" />
+
+    <TextView
+        android:id="@+id/itemHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="32dp"
+        android:text="Height"
+        android:textColor="@android:color/holo_green_light"
+        app:layout_constraintStart_toStartOf="@+id/bredForTextView"
+        app:layout_constraintTop_toBottomOf="@+id/bredForTextView" />
+
+    <TextView
+        android:id="@+id/itemOrigin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="Publisher"
-        android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintStart_toStartOf="@+id/itemHeightAndWeight"
-        app:layout_constraintTop_toBottomOf="@+id/itemHeightAndWeight" />
+        android:text="Origin"
+        android:textColor="@android:color/holo_green_light"
+        app:layout_constraintStart_toStartOf="@+id/itemWeight"
+        app:layout_constraintTop_toBottomOf="@+id/itemWeight" />
 
     <TextView
-        android:id="@+id/intelligenceTextView"
+        android:id="@+id/itemLifespan"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Lifespan"
+        android:textColor="@android:color/holo_green_light"
+        app:layout_constraintStart_toStartOf="@+id/itemOrigin"
+        app:layout_constraintTop_toBottomOf="@+id/itemOrigin" />
+
+    <TextView
+        android:id="@+id/itemWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Weight"
+        android:textColor="@android:color/holo_green_light"
+        app:layout_constraintStart_toStartOf="@+id/itemHeight"
+        app:layout_constraintTop_toBottomOf="@+id/itemHeight" />
+
+
+    <TextView
+        android:id="@+id/bredGroupTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
         android:text="TextView"
         android:textColor="@android:color/holo_orange_light"
-        app:layout_constraintStart_toEndOf="@+id/itemIntelligence"
-        app:layout_constraintTop_toTopOf="@+id/itemIntelligence" />
+        app:layout_constraintStart_toEndOf="@+id/itemBredGroup"
+        app:layout_constraintTop_toTopOf="@+id/itemBredGroup" />
 
     <TextView
-        android:id="@+id/strengthTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_light"
-        app:layout_constraintStart_toStartOf="@+id/intelligenceTextView"
-        app:layout_constraintTop_toTopOf="@+id/itemStrength" />
-
-    <TextView
-        android:id="@+id/powerTextVIew"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_light"
-        app:layout_constraintStart_toStartOf="@+id/durabilityTextView"
-        app:layout_constraintTop_toTopOf="@+id/itemPower" />
-
-    <TextView
-        android:id="@+id/durabilityTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_light"
-        app:layout_constraintStart_toStartOf="@+id/speedTextView"
-        app:layout_constraintTop_toTopOf="@+id/itemSpeed" />
-
-    <TextView
-        android:id="@+id/speedTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_light"
-        app:layout_constraintStart_toStartOf="@+id/strengthTextView"
-        app:layout_constraintTop_toTopOf="@+id/itemDurability" />
-
-    <TextView
-        android:id="@+id/itemIntelligence"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
-        android:layout_marginTop="12dp"
-        android:text="Intelligence"
-        android:textColor="@android:color/holo_green_light"
-        app:layout_constraintStart_toEndOf="@+id/selectedImageView"
-        app:layout_constraintTop_toBottomOf="@+id/nameTextView" />
-
-    <TextView
-        android:id="@+id/itemDurability"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Durability"
-        android:textColor="@android:color/holo_green_light"
-        app:layout_constraintStart_toStartOf="@+id/itemStrength"
-        app:layout_constraintTop_toBottomOf="@+id/itemStrength" />
-
-    <TextView
-        android:id="@+id/itemPower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="28dp"
-        android:text="Power"
-        android:textColor="@android:color/holo_green_light"
-        app:layout_constraintStart_toStartOf="@+id/itemSpeed"
-        app:layout_constraintTop_toBottomOf="@+id/itemSpeed" />
-
-    <TextView
-        android:id="@+id/itemSpeed"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="24dp"
-        android:text="Speed"
-        android:textColor="@android:color/holo_green_light"
-        app:layout_constraintStart_toStartOf="@+id/itemDurability"
-        app:layout_constraintTop_toBottomOf="@+id/itemDurability" />
-
-    <TextView
-        android:id="@+id/itemStrength"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="36dp"
-        android:text="Strength"
-        android:textColor="@android:color/holo_green_light"
-        app:layout_constraintStart_toStartOf="@+id/itemIntelligence"
-        app:layout_constraintTop_toTopOf="@+id/itemIntelligence" />
-
-    <TextView
-        android:id="@+id/itemfullName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="Race"
-        android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintStart_toStartOf="@+id/itemRace"
-        app:layout_constraintTop_toBottomOf="@+id/itemRace" />
-
-    <TextView
-        android:id="@+id/itembirthPlace"
+        android:id="@+id/itemBredGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:text="BirthPlace"
-        android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintStart_toStartOf="@+id/itemGender"
-        app:layout_constraintTop_toBottomOf="@+id/itemGender" />
-
-    <TextView
-        android:id="@+id/birthPlaceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_dark"
-        app:layout_constraintStart_toStartOf="@+id/genderTextView"
-        app:layout_constraintTop_toTopOf="@+id/itembirthPlace" />
-
-    <TextView
-        android:id="@+id/raceTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_dark"
-        app:layout_constraintStart_toStartOf="@+id/fullNameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/fullNameTextView" />
-
-    <TextView
-        android:id="@+id/heightAndWeightTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_dark"
-        app:layout_constraintStart_toStartOf="@+id/birthPlaceTextView"
-        app:layout_constraintTop_toTopOf="@+id/itemHeightAndWeight" />
-
-    <TextView
-        android:id="@+id/publisherTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_dark"
-        app:layout_constraintStart_toStartOf="@+id/heightAndWeightTextView"
-        app:layout_constraintTop_toTopOf="@+id/itemPublisher" />
-
-    <TextView
-        android:id="@+id/itemHeightAndWeight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Publisher"
-        android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintStart_toStartOf="@+id/itembirthPlace"
-        app:layout_constraintTop_toBottomOf="@+id/itembirthPlace" />
-
-    <TextView
-        android:id="@+id/fullNameTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_dark"
-        app:layout_constraintStart_toEndOf="@+id/itemRace"
-        app:layout_constraintTop_toTopOf="@+id/itemRace" />
-
-    <TextView
-        android:id="@+id/itemGender"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="Gender"
-        android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintStart_toStartOf="@+id/itemfullName"
-        app:layout_constraintTop_toBottomOf="@+id/itemfullName" />
-
-    <TextView
-        android:id="@+id/genderTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
-        android:textColor="@android:color/holo_orange_dark"
-        app:layout_constraintStart_toStartOf="@+id/raceTextView"
-        app:layout_constraintTop_toTopOf="@+id/itemGender" />
-
-    <TextView
-        android:id="@+id/itemRace"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
-        android:text="Full name"
-        android:textColor="@android:color/holo_blue_dark"
-        app:layout_constraintStart_toStartOf="@+id/groupAffiliationTextView"
-        app:layout_constraintTop_toBottomOf="@+id/groupAffiliationTextView" />
+        android:text="Bred group"
+        android:textColor="@android:color/holo_green_light"
+        app:layout_constraintStart_toStartOf="@+id/itemLifespan"
+        app:layout_constraintTop_toBottomOf="@+id/itemLifespan" />
 
     <ImageView
         android:id="@+id/selectedImageView"
-        android:layout_width="178dp"
-        android:layout_height="257dp"
+        android:layout_width="301dp"
+        android:layout_height="233dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="12dp"
         android:background="#FFFFFF"
         android:clickable="false"
         android:padding="2dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.035"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
@@ -257,32 +138,48 @@
         android:id="@+id/nameTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:text="Name"
         android:textColor="@android:color/white"
         android:textSize="32dp"
-        app:layout_constraintEnd_toEndOf="@+id/intelligenceTextView"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="@+id/itemIntelligence"
-        app:layout_constraintTop_toTopOf="@+id/selectedImageView" />
+        app:layout_constraintEnd_toEndOf="@+id/selectedImageView"
+        app:layout_constraintStart_toStartOf="@+id/selectedImageView"
+        app:layout_constraintTop_toBottomOf="@+id/selectedImageView" />
 
     <TextView
-        android:id="@+id/groupAffiliationTextView"
+        android:id="@+id/temperamantTextView"
         android:layout_width="357dp"
         android:layout_height="0dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
-        android:text="GroupAffiliation"
-        android:textColor="@android:color/white"
-        android:textSize="14sp"
-        app:autoSizeMaxTextSize="16sp"
-        app:autoSizeMinTextSize="8sp"
+        android:text="Temperamant"
+        android:textColor="@android:color/holo_blue_bright"
+        android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.789"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/selectedImageView"
+        app:layout_constraintTop_toBottomOf="@+id/nameTextView"
+        app:layout_constraintVertical_weight="1" />
+
+    <TextView
+        android:id="@+id/bredForTextView"
+        android:layout_width="357dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="Bred for"
+        android:textColor="@android:color/white"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.789"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/temperamantTextView"
         app:layout_constraintVertical_weight="1" />
 
     <LinearLayout
@@ -350,12 +247,11 @@
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:constraint_referenced_ids="itemSpeed,strengthTextView,powerTextVIew,intelligenceTextView,durabilityTextView,itemPower,itemIntelligence,speedTextView,selectedImageView,itemDurability,nameTextView,itemStrength" />
+        app:constraint_referenced_ids="itemLifespan,weightTextView,heightTextView,lifespanTextView,itemHeight,originTextView,selectedImageView,itemOrigin,nameTextView,itemWeight" />
 
     <androidx.constraintlayout.widget.Group
         android:id="@+id/group2"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:constraint_referenced_ids="birthPlaceTextView" />
+        android:layout_height="wrap_content" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
