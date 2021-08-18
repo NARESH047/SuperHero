@@ -6,13 +6,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filterable;
 import android.widget.TextView;
 
 import androidx.core.content.ContextCompat;
 
 import java.util.List;
 
-public class HeroAdapter extends ArrayAdapter<SuperHero> {
+public class HeroAdapter extends ArrayAdapter<SuperHero> implements Filterable {
+    SuperHero currentSuperHero;
+    View listItemView;
 
     public HeroAdapter(Context context, List<SuperHero> superHeroes) {
         super(context, 0, superHeroes);
@@ -21,13 +24,13 @@ public class HeroAdapter extends ArrayAdapter<SuperHero> {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        View listItemView = convertView;
+        listItemView = convertView;
         if (listItemView == null) {
             listItemView = LayoutInflater.from(getContext()).inflate(
                     R.layout.list_item, parent, false);
         }
 
-        SuperHero currentSuperHero = getItem(position);
+        currentSuperHero = getItem(position);
 
         TextView powerView = (TextView) listItemView.findViewById(R.id.power);
 
@@ -96,5 +99,6 @@ public class HeroAdapter extends ArrayAdapter<SuperHero> {
 
         return ContextCompat.getColor(getContext(), powerColorResourceId);
     }
+
 }
 
