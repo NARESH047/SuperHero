@@ -24,7 +24,7 @@ public class SelectedItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clicked_item);
-        dog = MainActivity.getCurrentDog();
+        dog = DogDictionaryActivity.getCurrentDog();
         if(dog != null) {
             TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
             nameTextView.setText(dog.getName());
