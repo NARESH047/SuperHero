@@ -1,5 +1,6 @@
 package com.example.superhero;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
@@ -14,9 +15,10 @@ import androidx.core.graphics.drawable.RoundedBitmapDrawable;
 import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URL;
 
-public class SelectedItem extends AppCompatActivity {
+public class SelectedItem extends AppCompatActivity implements Serializable {
 
     SuperHero superHero;
 
@@ -24,7 +26,8 @@ public class SelectedItem extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clicked_item);
-        superHero = MainActivity.getCurrentSuperHero();
+        Intent i = getIntent();
+        SuperHero superHero = (SuperHero) i.getSerializableExtra("currentSuperHero");
         HeroAsyncTask task = new HeroAsyncTask();
         task.execute();
         if(superHero != null) {
