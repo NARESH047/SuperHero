@@ -40,22 +40,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
-//        searchView = (SearchView) findViewById(R.id.search_bar);
-//
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                MainActivity.this.adapter.getFilter().filter(query);
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                MainActivity.this.adapter.getFilter().filter(newText);
-//                return true;
-//            }
-//        });
 
         if(isConnected) {
 
