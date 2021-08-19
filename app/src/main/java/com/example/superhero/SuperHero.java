@@ -15,7 +15,7 @@ public class SuperHero {
     private String mRace = "null";
 
 
-    private String mFullName, mBirthPlace, mPublisher, mGroupAffiliation = "null";
+    private String mFullName = "null", mBirthPlace = "null", mPublisher = "null", mGroupAffiliation = "null";
 
     private String mGender= "null";
 
@@ -58,8 +58,9 @@ public class SuperHero {
 
 
     public String getFullName() {
-        if(mFullName == null || mFullName == ""){
+        if(mFullName.equals("null")){
             mFullName = "unknown";
+            return mFullName;
         }
         return mFullName;
     }

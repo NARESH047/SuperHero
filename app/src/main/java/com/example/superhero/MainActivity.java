@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.example.superhero.QueryUtilis.HERO_REQUEST_URL;
@@ -29,6 +30,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     private ListView heroListView;
     SearchView searchView;
     Parcelable state;
+    ArrayList<SuperHero> superHeroesForDisplay;
+//    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,8 +74,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(Loader<List<SuperHero>> loader, List<SuperHero> superHeroes) {
+        superHeroesForDisplay = (ArrayList<SuperHero>) superHeroes;
 
-        mEmptyStateTextView.setText("No internet connection");
+        mEmptyStateTextView.setText("No hero found");
         View layoutBottom = findViewById(R.id.layoutBottom);
         layoutBottom.setVisibility(View.VISIBLE);
         ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner);
@@ -86,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
 
 
-        adapter = new HeroAdapter(MainActivity.this, superHeroes);
+        adapter = new HeroAdapter(MainActivity.this, superHeroesForDisplay);
 
 
         heroListView.setAdapter(adapter);
@@ -122,6 +126,37 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         state = heroListView.onSaveInstanceState();
         super.onPause();
     }
+
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.menu, menu);
+//        MenuItem menuItem = menu.findItem(R.id.searchMenu);
+//        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) menuItem.getActionView();
+//
+//        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                return false;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                ArrayList<SuperHero> results = new ArrayList<>();
+//                for(SuperHero x: superHeroesForDisplay){
+//                    if(x.getName().contains(newText)){
+//                        results.add(x);
+//                        superHeroesForDisplay.clear();
+//                        superHeroesForDisplay = results;
+//                        adapter.notifyDataSetChanged();
+//                    }
+//                }
+//
+//                return false;
+//            }
+//        });
+//        return super.onCreateOptionsMenu(menu);
+
+//    }
 
 
 }
