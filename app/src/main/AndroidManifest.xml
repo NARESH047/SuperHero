@@ -19,7 +19,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".SelectedItem"
-            android:noHistory="true"/>
+            android:noHistory="true"
+            android:theme="@style/SelectedItemTheme"/>
     </application>
 
 </manifest>

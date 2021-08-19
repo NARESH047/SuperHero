@@ -9,11 +9,12 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -28,9 +29,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     HeroAdapter adapter;
     private TextView mEmptyStateTextView;
     private ListView heroListView;
-    SearchView searchView;
     Parcelable state;
     ArrayList<SuperHero> superHeroesForDisplay;
+    ArrayList<SuperHero> superHeroesAll;
+
+
 //    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -74,8 +77,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     @Override
     public void onLoadFinished(Loader<List<SuperHero>> loader, List<SuperHero> superHeroes) {
-        superHeroesForDisplay = (ArrayList<SuperHero>) superHeroes;
-
+        final ArrayList<SuperHero> superHeroesFinal = (ArrayList<SuperHero>) superHeroes;
+        superHeroesAll = superHeroesFinal;
         mEmptyStateTextView.setText("No hero found");
         View layoutBottom = findViewById(R.id.layoutBottom);
         layoutBottom.setVisibility(View.VISIBLE);
@@ -83,26 +86,18 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         if(Loading != null) {
             Loading.setVisibility(View.GONE);
         }
-
-
         if(adapter!=null){
             adapter.clear();
         }
-
-
+        superHeroesForDisplay = superHeroesAll;
         adapter = new HeroAdapter(MainActivity.this, superHeroesForDisplay);
-
-
         heroListView.setAdapter(adapter);
         if(state!=null){
             heroListView.onRestoreInstanceState(state);
         }
-
-
         heroListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
                 currentSuperHero = adapter.getItem(position);
                 Intent itemIntent = new Intent(MainActivity.this, SelectedItem.class);
                 startActivity(itemIntent);
@@ -110,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             }
         });
     }
-
     public static SuperHero getCurrentSuperHero(){
         return  currentSuperHero;
     }
@@ -118,7 +112,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoaderReset(Loader<List<SuperHero>> loader) {
         adapter.clear();
-
     }
 
     @Override
@@ -127,36 +120,40 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         super.onPause();
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu, menu);
-//        MenuItem menuItem = menu.findItem(R.id.searchMenu);
-//        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) menuItem.getActionView();
-//
-//        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                ArrayList<SuperHero> results = new ArrayList<>();
-//                for(SuperHero x: superHeroesForDisplay){
-//                    if(x.getName().contains(newText)){
-//                        results.add(x);
-//                        superHeroesForDisplay.clear();
-//                        superHeroesForDisplay = results;
-//                        adapter.notifyDataSetChanged();
-//                    }
-//                }
-//
-//                return false;
-//            }
-//        });
-//        return super.onCreateOptionsMenu(menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        MenuItem menuItem = menu.findItem(R.id.searchMenu);
+        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) menuItem.getActionView();
 
-//    }
+        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                if (newText.length() > 1) {
+                    ArrayList<SuperHero> results = new ArrayList<SuperHero>();
+                    for (SuperHero x : superHeroesAll) {
+                        if (x.getName().contains(newText)) {
+                            results.add(x);
+                        }
+                    }
+                    superHeroesForDisplay.clear();
+                    superHeroesForDisplay.addAll(results);
+                    adapter.notifyDataSetChanged();
+                }
+                return false;
+
+            }
+        });
+//        getLoaderManager().restartLoader(1, null, MainActivity.this);
+        return true;
+
+    }
 
 
 }

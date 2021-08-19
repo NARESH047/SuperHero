@@ -329,10 +329,9 @@
 
         <ImageView
             android:id="@+id/Icon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
-            android:layout_marginLeft="16dp"
-            android:src="@drawable/hero_icon_circle_cropped" />
+            android:layout_width="48dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="16dp" />
 
         <TextView
             android:id="@+id/custom_title"
@@ -340,8 +339,9 @@
             android:layout_height="wrap_content"
             android:paddingLeft="8dp"
             android:text="SuperHero"
+            android:textAllCaps="true"
             android:textColor="@color/colorPrimary"
-            android:textSize="16sp"
+            android:textSize="22sp"
             android:textStyle="bold" />
 
     </androidx.appcompat.widget.Toolbar>

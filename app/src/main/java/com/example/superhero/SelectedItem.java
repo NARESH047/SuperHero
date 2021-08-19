@@ -10,6 +10,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.drawable.RoundedBitmapDrawable;
+import androidx.core.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +30,9 @@ public class SelectedItem extends AppCompatActivity {
         if(superHero != null) {
             TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
             nameTextView.setText(superHero.getName());
+
+            TextView custom_title = (TextView) findViewById(R.id.custom_title);
+            custom_title.setText(superHero.getName());
 
             TextView fullNameTV = findViewById(R.id.fullNameTextView);
             String fullName = superHero.getFullName();
@@ -109,7 +114,12 @@ public class SelectedItem extends AppCompatActivity {
             if(Loading != null) {
                 Loading.setVisibility(View.GONE);
             }
+            ImageView icon = (ImageView) findViewById(R.id.Icon);
             ImageView HeroImage = (ImageView) findViewById(R.id.selectedImageView);
+            RoundedBitmapDrawable roundedBitmapDrawable = RoundedBitmapDrawableFactory.create(getResources(), currentHeroImage);
+            roundedBitmapDrawable.setCornerRadius(3200f);
+            roundedBitmapDrawable.setAntiAlias(true);
+            icon.setImageDrawable(roundedBitmapDrawable);
             HeroImage.setImageBitmap(currentHeroImage);
         }
 }
