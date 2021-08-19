@@ -8,10 +8,12 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.SearchView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,6 +27,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     HeroAdapter adapter;
     private TextView mEmptyStateTextView;
     private ListView heroListView;
+    SearchView searchView;
+    Parcelable state;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
         boolean isConnected = activeNetwork != null &&
                 activeNetwork.isConnectedOrConnecting();
+//        searchView = (SearchView) findViewById(R.id.search_bar);
+//
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            TextView nameTextView = (TextView) findViewById(R.id.nameTextView);
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                MainActivity.this.adapter.getFilter().filter(query);
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String newText) {
+//                MainActivity.this.adapter.getFilter().filter(newText);
+//                return true;
+//            }
+//        });
+
         if(isConnected) {
 
             heroListView = (ListView) findViewById(R.id.list);
@@ -68,7 +89,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoadFinished(Loader<List<SuperHero>> loader, List<SuperHero> superHeroes) {
 
         mEmptyStateTextView.setText("No internet connection");
-
+        View layoutBottom = findViewById(R.id.layoutBottom);
+        layoutBottom.setVisibility(View.VISIBLE);
         ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner);
         if(Loading != null) {
             Loading.setVisibility(View.GONE);
@@ -84,6 +106,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
 
         heroListView.setAdapter(adapter);
+        if(state!=null){
+            heroListView.onRestoreInstanceState(state);
+        }
 
 
         heroListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -106,6 +131,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     public void onLoaderReset(Loader<List<SuperHero>> loader) {
         adapter.clear();
 
+    }
+
+    @Override
+    protected void onPause() {
+        state = heroListView.onSaveInstanceState();
+        super.onPause();
     }
 
 
