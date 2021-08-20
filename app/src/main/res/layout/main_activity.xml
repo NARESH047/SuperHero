@@ -72,6 +72,7 @@
         />
         <TextView
             android:id="@+id/emptyView"
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
@@ -98,7 +99,7 @@
                 android:layout_marginBottom="4dp"
                 android:text="Made with "
                 android:textColor="#006994"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
             <ImageView
                 android:layout_width="16dp"
@@ -111,7 +112,7 @@
                 android:layout_gravity="center_horizontal"
                 android:text=" from Naresh :)"
                 android:textColor="#006994"
-                android:textSize="16dp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
     </LinearLayout>

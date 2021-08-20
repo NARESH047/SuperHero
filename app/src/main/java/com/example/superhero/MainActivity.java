@@ -22,7 +22,6 @@ import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
@@ -30,6 +29,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.view.View.GONE;
 import static com.example.superhero.QueryUtilis.HERO_REQUEST_URL;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<SuperHero>>, Serializable {
@@ -37,10 +37,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     HeroAdapter adapter;
     private TextView mEmptyStateTextView;
     private ListView heroListView;
-    SearchView searchView;
     Parcelable state;
-    ArrayList<SuperHero> superHeroesForDisplay;
     ArrayList<SuperHero> superHeroesAll;
+    String searchStr;
 //    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
@@ -68,7 +67,7 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         }
         else{
             ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner);
-            Loading.setVisibility(View.GONE);
+            Loading.setVisibility(GONE);
             TextView internet = (TextView) findViewById(R.id.noInternet);
             internet.setTextSize(24);
             internet.setTextColor(Color.parseColor("#00FFFF"));
@@ -85,12 +84,12 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     @Override
     public void onLoadFinished(Loader<List<SuperHero>> loader, List<SuperHero> superHeroes) {
         superHeroesAll = (ArrayList<SuperHero>) superHeroes;
-        mEmptyStateTextView.setText("No hero found");
+        mEmptyStateTextView.setText("Check superhero name");
         View layoutBottom = findViewById(R.id.layoutBottom);
         layoutBottom.setVisibility(View.VISIBLE);
         ProgressBar Loading = (ProgressBar) findViewById(R.id.loading_spinner);
         if(Loading != null) {
-            Loading.setVisibility(View.GONE);
+            Loading.setVisibility(GONE);
         }
         if(adapter!=null){
             adapter = null;
@@ -101,23 +100,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             heroListView.onRestoreInstanceState(state);
         }
 
-
-//        heroListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-//
-//                currentSuperHero = adapter.getItem(position);
-//                Intent itemIntent = new Intent(MainActivity.this, SelectedItem.class);
-//                itemIntent.putExtra("currentSuperHero", currentSuperHero);
-//                startActivity(itemIntent);
-//
-//            }
-//        });
     }
 
-//    public static SuperHero getCurrentSuperHero(){
-//        return  currentSuperHero;
-//    }
 
     @Override
     public void onLoaderReset(Loader<List<SuperHero>> loader) {
@@ -130,7 +114,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         getMenuInflater().inflate(R.menu.menu, menu);
         MenuItem menuItem = menu.findItem(R.id.search_view);
         SearchView searchView = (SearchView) menuItem.getActionView();
-//        searchView.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_NO_SUGGESTIONS);
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -147,25 +130,23 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         return true;
     }
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        int id = item.getItemId();
-        if(id == R.id.search_view){
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        int id = item.getItemId();
+//        if(id == R.id.search_view){
+//            return true;
+//        }
+//        return super.onOptionsItemSelected(item);
+//    }
 
     public class HeroAdapter extends BaseAdapter implements Filterable {
-        SuperHero currentSuperHero;
-        View listItemView;
         private List<SuperHero> superHeroList;
         private List<SuperHero> superHeroListFiltered;
         private Context context;
 
         public HeroAdapter(List<SuperHero> superHeroes, Context context) {
-            this.superHeroList = superHeroes;
-            this.superHeroListFiltered = superHeroes;
+            superHeroList = superHeroes;
+            superHeroListFiltered = superHeroes;
             this.context = context;
 
         }
@@ -188,8 +169,8 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
         @Override
         public View getView(final int position, View convertView, ViewGroup parent) {
-            View view = getLayoutInflater().inflate(R.layout.list_item,null);
 
+            View view = getLayoutInflater().inflate(R.layout.list_item,null);
 
             TextView powerView = (TextView) view.findViewById(R.id.power);
 
@@ -200,7 +181,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
             powerCircle.setColor(powerColor);
 
-
             TextView name = (TextView) view.findViewById(R.id.name);
 
             name.setText(superHeroListFiltered.get(position).getName());
@@ -208,10 +188,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
             TextView family = (TextView) view.findViewById(R.id.family);
             family.setText(superHeroListFiltered.get(position).getRace());
 
-
-            TextView fullName = (TextView) view.findViewById(R.id.full_name);
-
-            fullName.setText(superHeroListFiltered.get(position).getFullName());
+            TextView fullNameTextView = (TextView) view.findViewById(R.id.full_name);
+            String fullName = superHeroListFiltered.get(position).getFullName();
+            if(fullName == null ||(fullName.length() == 0)){
+                fullNameTextView.setText("Unknown");
+            } else {
+                fullNameTextView.setText(fullName);
+            }
 
             TextView gender = (TextView) view.findViewById(R.id.gender);
             if(superHeroListFiltered.get(position).getGender() != null){
@@ -242,11 +225,9 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                     if(constraint == null || constraint.length() == 0) {
                         filterResults.count = superHeroList.size();
                         filterResults.values = superHeroList;
-
                     }else{
-                        String searchStr = constraint.toString().toLowerCase();
+                        searchStr = constraint.toString().toLowerCase();
                         List<SuperHero> resultData = new ArrayList<>();
-
                         for(SuperHero superHero:superHeroList){
                             if(superHero.getName().toLowerCase().contains(searchStr)){
                                 resultData.add(superHero);
@@ -254,15 +235,29 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
                                 filterResults.values = resultData;
                             }
                         }
-
                     }
                     return filterResults;
                 }
 
                 @Override
                 protected void publishResults(CharSequence constraint, FilterResults results) {
-                    superHeroListFiltered = (List<SuperHero>) results.values;
-                    notifyDataSetChanged();
+                    ListView listView = findViewById(R.id.list);
+                    TextView textView = findViewById(R.id.emptyView);
+
+                    if(results.count>0) {
+                        if(listView.getVisibility() == GONE){
+                            listView.setVisibility(View.VISIBLE);
+                        }
+                        if(textView.getVisibility() == View.VISIBLE){
+                                textView.setVisibility(GONE);
+                        }
+                        superHeroListFiltered = (List<SuperHero>) results.values;
+                        notifyDataSetChanged();
+                    } else {
+                        listView.setVisibility(GONE);
+                        textView.setVisibility(View.VISIBLE);
+                    }
+
                 }
             };
             return filter;
@@ -311,64 +306,11 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
 
     }
 
-//    @Override
-//    protected void onPause() {
-//        state = heroListView.onSaveInstanceState();
-//        super.onPause();
-//    }
-
-
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//
-//        int id = item.getItemId();
-//
-//
-//        if(id == R.id.searchMenu){
-//
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
-
-
-//
-//
-//
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu, menu);
-//        MenuItem menuItem = menu.findItem(R.id.searchMenu);
-//        androidx.appcompat.widget.SearchView searchView = (androidx.appcompat.widget.SearchView) menuItem.getActionView();
-//
-//        searchView.setOnQueryTextListener(new androidx.appcompat.widget.SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                if(newText == null || newText.length() == 0){
-//                    superHeroesForDisplay= superHeroesAll;
-//                }else{
-//                    ArrayList<SuperHero> results = new ArrayList<>();
-//                    String searchText = newText.toString().toLowerCase();
-//
-//                    for(SuperHero x:superHeroesAll){
-//                        if(x.getName().contains(searchText)){
-//                            results.add(x);
-//                            superHeroesForDisplay = results;
-//                        }
-//                    }
-//                }
-//                adapter.notifyDataSetChanged();
-//                return true;
-//            }
-//        });
-//        return true;
-//
-//    }
+    @Override
+    protected void onPause() {
+        state = heroListView.onSaveInstanceState();
+        super.onPause();
+    }
 
 }
 

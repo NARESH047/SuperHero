@@ -66,7 +66,6 @@ public final class QueryUtilis {
 
                 JSONObject images = currentHeroData.getJSONObject("images");
                 URL imageUrl = createUrl(images.getString("md"));
-//                Bitmap bmp = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
 
                 SuperHero superHero = new SuperHero(power, name, race, fullName, gender, imageUrl, intelligence, speed, durability, combat, birthPlace, publisher, groupAffiliation+".", height, weight);
 
@@ -74,8 +73,6 @@ public final class QueryUtilis {
             }
 
         } catch (JSONException e) {
-
-            Log.e("QueryUtils", "Problem parsing the JSON results", e);
         }
 
         return superHeroes;
@@ -86,7 +83,6 @@ public final class QueryUtilis {
         try {
             url = new URL(stringUrl);
         } catch (MalformedURLException exception) {
-            Log.e("LOG_TAG", "Error with creating URL", exception);
             return null;
         }
         return url;
@@ -137,15 +133,6 @@ public final class QueryUtilis {
         }
         return output.toString();
     }
-
-//    public void getImage(URL imageUrl){
-//        try {
-//            Bitmap bmp = BitmapFactory.decodeStream(imageUrl.openConnection().getInputStream());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//
-//    }
 
 }
 
