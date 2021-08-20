@@ -30,7 +30,6 @@ import java.util.List;
 import static com.example.superhero.QueryUtilis.HERO_REQUEST_URL;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<SuperHero>>, Serializable {
-    private static SuperHero currentSuperHero;
     HeroAdapter adapter;
     private TextView mEmptyStateTextView;
     private ListView heroListView;
@@ -100,16 +99,13 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         heroListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                currentSuperHero = (SuperHero) adapter.getItem(position);
+                SuperHero currentSuperHero = (SuperHero) adapter.getItem(0);
                 Intent itemIntent = new Intent(MainActivity.this, SelectedItem.class);
                 itemIntent.putExtra("currentSuperHero", (Serializable) currentSuperHero);
                 startActivity(itemIntent);
 
             }
         });
-    }
-    public static SuperHero getCurrentSuperHero(){
-        return  currentSuperHero;
     }
 
     @Override
