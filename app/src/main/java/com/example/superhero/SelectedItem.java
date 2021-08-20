@@ -27,7 +27,8 @@ public class SelectedItem extends AppCompatActivity implements Serializable {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.clicked_item);
         Intent i = getIntent();
-        SuperHero superHero = (SuperHero) i.getSerializableExtra("currentSuperHero");
+        superHero = (SuperHero) i.getSerializableExtra("currentSuperHero");
+//        superHero = MainActivity.getCurrentSuperHero();
         HeroAsyncTask task = new HeroAsyncTask();
         task.execute();
         if(superHero != null) {

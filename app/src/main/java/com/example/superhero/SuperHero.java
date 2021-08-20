@@ -1,9 +1,10 @@
 package com.example.superhero;
 
+import java.io.Serializable;
 import java.net.URL;
 
 
-public class SuperHero {
+public class SuperHero implements Serializable {
 
     private String mHeight, mWeight;
     private int mIntelligence, mSpeed, mDurability, mCombat;
