@@ -32,8 +32,6 @@ public final class GetHeros {
         try {
 
             JSONArray baseJsonResponse = new JSONArray(jsonResponse);
-
-
             for (int i = 0; i < baseJsonResponse.length(); i++) {
 
                 JSONObject currentHeroData = baseJsonResponse.getJSONObject(i);
