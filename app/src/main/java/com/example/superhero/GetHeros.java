@@ -1,7 +1,5 @@
 package com.example.superhero;
 
-import android.util.Log;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -16,14 +14,11 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 
-public final class QueryUtilis {
+public final class GetHeros {
 
     public static final String HERO_REQUEST_URL =  "https://akabab.github.io/superhero-api/api/all.json";
 
-    public static ArrayList<SuperHero> extractHeros(String jsonUrl) {
-        Log.v("QueryUtilis", "Test: extractHeros");
-
-
+    public static ArrayList<SuperHero> getHeros(String jsonUrl) {
         String jsonResponse = null;
         try {
             jsonResponse = makeHttpRequest(createUrl(jsonUrl));

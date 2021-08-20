@@ -28,7 +28,6 @@ public class SelectedItem extends AppCompatActivity implements Serializable {
         setContentView(R.layout.clicked_item);
         Intent i = getIntent();
         superHero = (SuperHero) i.getSerializableExtra("currentSuperHero");
-//        superHero = MainActivity.getCurrentSuperHero();
         HeroAsyncTask task = new HeroAsyncTask();
         task.execute();
         if(superHero != null) {
@@ -95,7 +94,6 @@ public class SelectedItem extends AppCompatActivity implements Serializable {
 
         @Override
         protected Bitmap doInBackground(URL... urls) {
-            // Create URL object
             URL imageUrl = (superHero.getImageUrl());
 
             try {

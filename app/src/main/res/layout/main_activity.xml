@@ -11,56 +11,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-
-<!--            <androidx.appcompat.widget.Toolbar-->
-<!--                android:id="@+id/toolbar"-->
-<!--                android:layout_width="0dp"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:background="#222222"-->
-<!--                app:layout_constraintEnd_toEndOf="parent"-->
-<!--                app:layout_constraintStart_toStartOf="parent"-->
-<!--                app:layout_constraintTop_toTopOf="parent">-->
-
-<!--                <ImageView-->
-<!--                    android:id="@+id/Icon"-->
-<!--                    android:layout_width="32dp"-->
-<!--                    android:layout_height="32dp"-->
-<!--                    android:layout_marginLeft="16dp"-->
-<!--                    android:src="@drawable/hero_icon_circle_cropped" />-->
-
-<!--                <TextView-->
-<!--                    android:id="@+id/custom_title"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:paddingLeft="8dp"-->
-<!--                    android:text="SuperHero"-->
-<!--                    android:textColor="@color/colorPrimary"-->
-<!--                    android:textSize="16sp"-->
-<!--                    android:textStyle="bold" />-->
-
-<!--            </androidx.appcompat.widget.Toolbar>-->
-
-<!--            <SearchView-->
-<!--                android:id="@+id/search_bar"-->
-<!--                android:layout_width="100dp"-->
-<!--                android:layout_height="0dp"-->
-<!--                android:padding="2dp"-->
-<!--                android:background="@android:color/holo_blue_bright"-->
-<!--                app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                app:layout_constraintEnd_toEndOf="@+id/toolbar"-->
-<!--                app:layout_constraintTop_toTopOf="parent"-->
-<!--                app:queryHint="Search breed"-->
-<!--                app:searchIcon="@android:drawable/ic_menu_search">-->
-
-<!--            </SearchView>-->
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-
     <ListView
         android:id="@+id/list"
         android:orientation="vertical"

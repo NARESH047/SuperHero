@@ -30,7 +30,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static android.view.View.GONE;
-import static com.example.superhero.QueryUtilis.HERO_REQUEST_URL;
+import static com.example.superhero.GetHeros.HERO_REQUEST_URL;
 
 public class MainActivity extends AppCompatActivity implements LoaderManager.LoaderCallbacks<List<SuperHero>>, Serializable {
     private static SuperHero currentSuperHero;
@@ -40,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
     Parcelable state;
     ArrayList<SuperHero> superHeroesAll;
     String searchStr;
-//    SwipeRefreshLayout swipeRefreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -130,14 +129,6 @@ public class MainActivity extends AppCompatActivity implements LoaderManager.Loa
         return true;
     }
 
-//    @Override
-//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-//        int id = item.getItemId();
-//        if(id == R.id.search_view){
-//            return true;
-//        }
-//        return super.onOptionsItemSelected(item);
-//    }
 
     public class HeroAdapter extends BaseAdapter implements Filterable {
         private List<SuperHero> superHeroList;

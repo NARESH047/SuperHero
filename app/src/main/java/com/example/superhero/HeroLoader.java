@@ -16,7 +16,6 @@ public class HeroLoader extends AsyncTaskLoader<List<SuperHero>> {
 
     @Override
     protected void onStartLoading() {
-
         forceLoad();
     }
 
@@ -27,8 +26,7 @@ public class HeroLoader extends AsyncTaskLoader<List<SuperHero>> {
         if (mUrl == null) {
             return null;
         }
-
-        List<SuperHero> superHeroes = QueryUtilis.extractHeros(mUrl);
+        List<SuperHero> superHeroes = GetHeros.getHeros(mUrl);
         return superHeroes;
     }
 
