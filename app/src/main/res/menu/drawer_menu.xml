@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view"
+    >
+    <group android:checkableBehavior="single"
+        android:title="Gender">
+        <item
+            android:id="@+id/allInNav"
+            android:icon="@drawable/people"
+            android:title="All" />
+        <item
+            android:id="@+id/maleInNav"
+            android:icon="@drawable/face_man"
+            android:title="Male" />
+        <item
+            android:id="@+id/femaleInNav"
+            android:icon="@drawable/face_woman"
+            android:title="Female" />
+        <item
+            android:id="@+id/nonBinaryInNav"
+            android:icon="@drawable/non_binary"
+            android:title="Non binary/ Unknown" />
+    </group>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:title="@string/publisher">
+        <menu>
+            <item
+                android:id="@+id/dcComicsInNav"
+                android:icon="@drawable/bat"
+                android:title="DC Comics" />
+            <item
+                android:id="@+id/marvelComicsInNav"
+                android:icon="@drawable/spider"
+                android:title="Marvel Comics" />
+            <item
+                android:id="@+id/otherComicsInNav"
+                android:icon="@drawable/bird"
+                android:title="other publishers" />
+        </menu>
+        </item>
+    </group>
+
+</menu>

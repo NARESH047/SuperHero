@@ -2,5 +2,10 @@
 
 <resources>
     <string name="app_name">SuperHero Dictionary</string>
-    <string name="near_the">Near the</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="publisher">Publisher
+    </string>
 </resources>
+
+
